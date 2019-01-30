@@ -1,0 +1,1077 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Velib Simulation (with code)}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{MPRO - FAT - Velib System
+Simulation}\label{mpro---fat---velib-system-simulation}
+
+\emph{Guillaume Dalle \& Julien Khamphousone}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c}{\PYZsh{} Package installation, if necessary}
+        \PY{k}{using} \PY{n}{Pkg}
+        \PY{n}{Pkg}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{p}{)}
+        \PY{c}{\PYZsh{} Pkg.add(\PYZdq{}Random\PYZdq{})}
+        \PY{c}{\PYZsh{} Pkg.add(\PYZdq{}StatsBase\PYZdq{})}
+        \PY{c}{\PYZsh{} Pkg.add(\PYZdq{}DataFrames\PYZdq{})}
+        \PY{c}{\PYZsh{} Pkg.add(\PYZdq{}Statistics\PYZdq{})}
+        \PY{c}{\PYZsh{} Pkg.add(\PYZdq{}ProgressMeter\PYZdq{});}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green-intense}{\textbf{  Updating}} registry at `\textasciitilde{}/.julia/registries/General`
+\textcolor{ansi-green-intense}{\textbf{  Updating}} git-repo `https://github.com/JuliaRegistries/General.git`
+\textcolor{ansi-green-intense}{\textbf{ Resolving}} package versions{\ldots}
+\textcolor{ansi-green-intense}{\textbf{  Updating}} `\textasciitilde{}/.julia/environments/v1.0/Project.toml`
+\textcolor{ansi-black-intense}{ [no changes]}
+\textcolor{ansi-green-intense}{\textbf{  Updating}} `\textasciitilde{}/.julia/environments/v1.0/Manifest.toml`
+\textcolor{ansi-black-intense}{ [no changes]}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c}{\PYZsh{} Imports}
+        \PY{k}{using} \PY{n}{Random}
+        \PY{k}{using} \PY{n}{StatsBase}
+        \PY{k}{using} \PY{n}{DataFrames}
+        \PY{k}{using} \PY{n}{Statistics}
+        \PY{k}{using} \PY{n}{ProgressMeter}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c}{\PYZsh{} Set a random seed to ensure reproducible results}
+        \PY{n}{Random}\PY{o}{.}\PY{n}{seed!}\PY{p}{(}\PY{l+m+mi}{63}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    The code for the simulation is contained in the following cells, and
+available at https://gitlab.com/gdalle/fat-velib.
+
+    \textbf{Useful data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{tmi} \PY{o}{=} \PY{n}{typemax}\PY{p}{(}\PY{k+kt}{Int64}\PY{p}{)}
+        
+        \PY{n}{nb\PYZus{}stations} \PY{o}{=} \PY{l+m+mi}{5}
+        
+        \PY{c}{\PYZsh{}\PYZsh{} TRANSITION RATES}
+        
+        \PY{c}{\PYZsh{} Average trip duration from i to j [min]}
+        \PY{n}{tau} \PY{o}{=} \PY{p}{[}
+            \PY{p}{[}\PY{n}{tmi}  \PY{l+m+mi}{3}    \PY{l+m+mi}{5}    \PY{l+m+mi}{7}    \PY{l+m+mi}{7}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mi}{2}    \PY{n}{tmi}  \PY{l+m+mi}{2}    \PY{l+m+mi}{5}    \PY{l+m+mi}{5}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mi}{4}    \PY{l+m+mi}{2}    \PY{n}{tmi}  \PY{l+m+mi}{3}    \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mi}{8}    \PY{l+m+mi}{6}    \PY{l+m+mi}{4}    \PY{n}{tmi}  \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mi}{7}    \PY{l+m+mi}{7}    \PY{l+m+mi}{5}    \PY{l+m+mi}{2}    \PY{n}{tmi}\PY{p}{]}\PY{p}{]}
+        
+        \PY{c}{\PYZsh{} Rate of transition from t\PYZus{}ij to j [min\PYZca{}\PYZhy{}1]}
+        \PY{n}{lambda\PYZus{}trip\PYZus{}station} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{./} \PY{n}{tau}
+        
+        \PY{c}{\PYZsh{} Frequency of bike departures for each station [min\PYZca{}\PYZhy{}1]}
+        \PY{n}{departures} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{2.8}\PY{p}{,}  \PY{l+m+mf}{3.7}\PY{p}{,}  \PY{l+m+mf}{5.5}\PY{p}{,}  \PY{l+m+mf}{3.5}\PY{p}{,}  \PY{l+m+mf}{4.6}\PY{p}{]} \PY{o}{./} \PY{l+m+mi}{60}
+        
+        \PY{c}{\PYZsh{} Probability that a bike will leave from station i to station j}
+        \PY{n}{routing} \PY{o}{=} \PY{p}{[}
+            \PY{p}{[}\PY{l+m+mi}{0}      \PY{l+m+mf}{0.22} 	\PY{l+m+mf}{0.32} 	\PY{l+m+mf}{0.2}	    \PY{l+m+mf}{0.26}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mf}{0.17} 	\PY{l+m+mi}{0}       \PY{l+m+mf}{0.34} 	\PY{l+m+mf}{0.21} 	\PY{l+m+mf}{0.28}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mf}{0.19} 	\PY{l+m+mf}{0.26} 	\PY{l+m+mi}{0}       \PY{l+m+mf}{0.24} 	\PY{l+m+mf}{0.31}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mf}{0.17} 	\PY{l+m+mf}{0.22} 	\PY{l+m+mf}{0.33} 	\PY{l+m+mi}{0}       \PY{l+m+mf}{0.28}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mf}{0.18} 	\PY{l+m+mf}{0.24} 	\PY{l+m+mf}{0.35} 	\PY{l+m+mf}{0.23}    \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+        
+        \PY{c}{\PYZsh{} Rate of transition from i to t\PYZus{}ij [min\PYZca{}\PYZhy{}1]}
+        \PY{n}{lambda\PYZus{}station\PYZus{}trip} \PY{o}{=} \PY{n}{departures} \PY{o}{.*} \PY{n}{routing}
+        
+        \PY{c}{\PYZsh{}\PYZsh{} INITIAL VALUES}
+        
+        \PY{c}{\PYZsh{} Number of bikes parked in station i}
+        \PY{n}{nb\PYZus{}bikes\PYZus{}station} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,}  \PY{l+m+mi}{16}\PY{p}{,}  \PY{l+m+mi}{17}\PY{p}{,}  \PY{l+m+mi}{13}\PY{p}{,}  \PY{l+m+mi}{18}\PY{p}{]}
+        
+        \PY{c}{\PYZsh{} Number of bikes on the trip t\PYZus{}ij}
+        \PY{n}{nb\PYZus{}bikes\PYZus{}trip} \PY{o}{=} \PY{p}{[}
+            \PY{p}{[}\PY{l+m+mi}{0}  \PY{l+m+mi}{1}  \PY{l+m+mi}{0}  \PY{l+m+mi}{0}  \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mi}{1}  \PY{l+m+mi}{0}  \PY{l+m+mi}{1}  \PY{l+m+mi}{0}  \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mi}{0}  \PY{l+m+mi}{1}  \PY{l+m+mi}{0}  \PY{l+m+mi}{1}  \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mi}{0}  \PY{l+m+mi}{0}  \PY{l+m+mi}{1}  \PY{l+m+mi}{0}  \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{;}
+            \PY{p}{[}\PY{l+m+mi}{0}  \PY{l+m+mi}{0}  \PY{l+m+mi}{0}  \PY{l+m+mi}{1}  \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{;}
+            \PY{p}{]}
+        
+        \PY{k}{function} \PY{n}{define\PYZus{}random\PYZus{}initial\PYZus{}conditions}\PY{p}{(}\PY{p}{)}
+        
+            \PY{c}{\PYZsh{} Here we simulate random initial conditions}
+        
+            \PY{n}{number\PYZus{}of\PYZus{}bikes} \PY{o}{=} \PY{l+m+mi}{20}\PY{o}{+}\PY{l+m+mi}{16}\PY{o}{+}\PY{l+m+mi}{17}\PY{o}{+}\PY{l+m+mi}{13}\PY{o}{+}\PY{l+m+mi}{18}\PY{o}{+}\PY{l+m+mi}{8}
+            \PY{n}{nb\PYZus{}bikes\PYZus{}station} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+            \PY{n}{nb\PYZus{}bikes\PYZus{}trip} \PY{o}{=} \PY{p}{[}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{0}\PY{o}{:}\PY{l+m+mi}{2}\PY{p}{)} \PY{k}{for} \PY{n}{\PYZus{}} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nb\PYZus{}stations}\PY{p}{,} \PY{n}{\PYZus{}} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nb\PYZus{}stations}\PY{p}{]}
+            \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nb\PYZus{}stations}
+                \PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{n}{push!}\PY{p}{(}\PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{,} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{number\PYZus{}of\PYZus{}bikes}\PY{p}{)}\PY{p}{)}
+            \PY{k}{end}
+            \PY{k}{while} \PY{n}{sum}\PY{p}{(}\PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{)} \PY{o}{!=} \PY{n}{number\PYZus{}of\PYZus{}bikes}\PY{o}{\PYZhy{}}\PY{n}{sum}\PY{p}{(}\PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{p}{)}
+                \PY{n}{station} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nb\PYZus{}stations}\PY{p}{)}
+                \PY{k}{if} \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{[}\PY{n}{station}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}
+                    \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{[}\PY{n}{station}\PY{p}{]} \PY{o}{\PYZhy{}=} \PY{l+m+mi}{1}
+                \PY{k}{end}
+            \PY{k}{end}
+            \PY{c}{\PYZsh{} Number of bikes on the trip t\PYZus{}ij}
+            
+            \PY{k}{return} \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}trip}
+        \PY{k}{end}\PY{p}{;}
+\end{Verbatim}
+
+
+    \textbf{Colony model}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{Colonies}
+            \PY{n}{lambda\PYZus{}station\PYZus{}trip}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}}
+            \PY{n}{lambda\PYZus{}trip\PYZus{}station}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}}
+            \PY{n}{nb\PYZus{}stations}\PY{o}{::}\PY{k+kt}{Int} \PY{c}{\PYZsh{} Number of stations in the bike\PYZhy{}sharing system}
+            \PY{n}{current\PYZus{}time}\PY{o}{::}\PY{k+kt}{Float64} \PY{c}{\PYZsh{} Current time of the colonies process}
+            \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}} \PY{c}{\PYZsh{} Number of bikes parked in station i}
+            \PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}} \PY{c}{\PYZsh{} Number of bikes on the trip t\PYZus{}ij}
+        \PY{k}{end}
+        
+        \PY{n}{Colonies}\PY{p}{(}
+            \PY{n}{lambda\PYZus{}station\PYZus{}trip}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{n}{lambda\PYZus{}trip\PYZus{}station}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}}
+        \PY{p}{)} \PY{o}{=} \PY{n}{Colonies}\PY{p}{(}
+            \PY{n}{lambda\PYZus{}station\PYZus{}trip}\PY{p}{,}
+            \PY{n}{lambda\PYZus{}trip\PYZus{}station}\PY{p}{,}
+            \PY{n}{size}\PY{p}{(}\PY{n}{lambda\PYZus{}station\PYZus{}trip}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+            \PY{o}{\PYZhy{}}\PY{n+nb}{Inf}\PY{p}{,}
+            \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
+            \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+        \PY{p}{)}
+        
+        \PY{k}{function} \PY{n}{initialize!}\PY{p}{(}
+            \PY{n}{col}\PY{o}{::}\PY{n}{Colonies}\PY{p}{,}
+            \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}}
+        \PY{p}{)}
+            \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{)}
+            \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{p}{)}
+            \PY{n}{col}\PY{o}{.}\PY{n}{current\PYZus{}time} \PY{o}{=} \PY{l+m+mf}{0.}
+        \PY{k}{end}
+        
+        \PY{k}{function} \PY{n}{transition\PYZus{}station\PYZus{}trip!}\PY{p}{(}\PY{n}{col}\PY{o}{::}\PY{n}{Colonies}\PY{p}{,} \PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{,} \PY{n}{j}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)}
+            \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}=} \PY{l+m+mi}{1}
+            \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{+=} \PY{l+m+mi}{1}
+        \PY{k}{end}
+        
+        \PY{k}{function} \PY{n}{transition\PYZus{}trip\PYZus{}station!}\PY{p}{(}\PY{n}{col}\PY{o}{::}\PY{n}{Colonies}\PY{p}{,} \PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{,} \PY{n}{j}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)}
+            \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{\PYZhy{}=} \PY{l+m+mi}{1}
+            \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+=} \PY{l+m+mi}{1}
+        \PY{k}{end}\PY{p}{;}
+\end{Verbatim}
+
+
+    \textbf{Markov process simulation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{S}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{x}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{k}\PY{l+s}{o}\PY{l+s}{v}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{.}
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{function} \PY{n}{simulate\PYZus{}next\PYZus{}transition}\PY{p}{(}\PY{n}{col}\PY{o}{::}\PY{n}{Colonies}\PY{p}{)}
+            \PY{c}{\PYZsh{} Compute current transition rates}
+            \PY{n}{q\PYZus{}trip\PYZus{}station} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{lambda\PYZus{}trip\PYZus{}station} \PY{o}{.*} \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}bikes\PYZus{}trip}
+            \PY{n}{q\PYZus{}station\PYZus{}trip} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{lambda\PYZus{}station\PYZus{}trip} \PY{o}{.*} \PY{n}{convert}\PY{p}{(}
+                \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}bikes\PYZus{}station} \PY{o}{.\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)}
+        
+            \PY{c}{\PYZsh{} The sum of all transition rates defines the parameter of}
+            \PY{c}{\PYZsh{} the exponential distribution giving the time to the next transition}
+            \PY{n}{total\PYZus{}transition\PYZus{}rate} \PY{o}{=} \PY{n}{sum}\PY{p}{(}\PY{n}{q\PYZus{}station\PYZus{}trip}\PY{p}{)} \PY{o}{+} \PY{n}{sum}\PY{p}{(}\PY{n}{q\PYZus{}trip\PYZus{}station}\PY{p}{)}
+            \PY{n}{time\PYZus{}to\PYZus{}next\PYZus{}transition} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{/} \PY{n}{total\PYZus{}transition\PYZus{}rate}\PY{p}{)} \PY{o}{*} \PY{n}{log}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        
+            \PY{c}{\PYZsh{} Each transition has a likelihood that is proportional to its transition rate}
+            \PY{n}{transitions} \PY{o}{=} \PY{n}{vcat}\PY{p}{(}
+                \PY{n}{vec}\PY{p}{(}\PY{p}{[}
+                    \PY{p}{(}\PY{n}{transition\PYZus{}type}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZus{}}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{p}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{i}\PY{o}{=}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{o}{=}\PY{n}{j}\PY{p}{)}
+                    \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{,} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}
+                \PY{p}{]}\PY{p}{)}\PY{p}{,}
+                \PY{n}{vec}\PY{p}{(}\PY{p}{[}
+                    \PY{p}{(}\PY{n}{transition\PYZus{}type}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{p}\PY{l+s}{\PYZus{}}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{i}\PY{o}{=}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{o}{=}\PY{n}{j}\PY{p}{)}
+                    \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{,} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}
+                \PY{p}{]}\PY{p}{)}\PY{p}{,}
+            \PY{p}{)}
+            \PY{n}{transition\PYZus{}probas} \PY{o}{=} \PY{n}{vcat}\PY{p}{(}
+                \PY{n}{vec}\PY{p}{(}\PY{p}{[}
+                    \PY{n}{q\PYZus{}station\PYZus{}trip}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{/} \PY{n}{total\PYZus{}transition\PYZus{}rate}
+                    \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{,} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}
+                \PY{p}{]}\PY{p}{)}\PY{p}{,}
+                \PY{n}{vec}\PY{p}{(}\PY{p}{[}
+                    \PY{n}{q\PYZus{}trip\PYZus{}station}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{/} \PY{n}{total\PYZus{}transition\PYZus{}rate}
+                    \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{,} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}
+                \PY{p}{]}\PY{p}{)}
+            \PY{p}{)}
+        
+            \PY{c}{\PYZsh{} Sample a transition with the weights given above}
+            \PY{n}{next\PYZus{}transition} \PY{o}{=} \PY{n}{sample}\PY{p}{(}\PY{n}{transitions}\PY{p}{,} \PY{n}{Weights}\PY{p}{(}\PY{n}{transition\PYZus{}probas}\PY{p}{)}\PY{p}{)}
+        
+            \PY{k}{return} \PY{n}{next\PYZus{}transition}\PY{p}{,} \PY{n}{time\PYZus{}to\PYZus{}next\PYZus{}transition}
+        \PY{k}{end}
+        
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{S}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{j}\PY{l+s}{e}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{k}\PY{l+s}{o}\PY{l+s}{v}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{w}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{.}
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{function} \PY{n}{simulate}\PY{p}{(}
+                \PY{n}{col}\PY{o}{::}\PY{n}{Colonies}\PY{p}{,}
+                \PY{n}{max\PYZus{}time}\PY{o}{::}\PY{k+kt}{Float64}\PY{p}{,}
+                \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,}
+                \PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}}
+            \PY{p}{)}
+        
+            \PY{n}{col}\PY{o}{::}\PY{n}{Colonies} \PY{o}{=} \PY{n}{deepcopy}\PY{p}{(}\PY{n}{col}\PY{p}{)}
+            \PY{n}{initialize!}\PY{p}{(}\PY{n}{col}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{p}{)}
+        
+            \PY{n}{transitions\PYZus{}history} \PY{o}{=} \PY{n}{DataFrame}\PY{p}{(}
+                \PY{n}{time} \PY{o}{=} \PY{k+kt}{Float64}\PY{p}{[}\PY{p}{]}\PY{p}{,}
+                \PY{n}{transition\PYZus{}type} \PY{o}{=} \PY{n}{String}\PY{p}{[}\PY{p}{]}\PY{p}{,}
+                \PY{n}{i} \PY{o}{=} \PY{k+kt}{Int64}\PY{p}{[}\PY{p}{]}\PY{p}{,}
+                \PY{n}{j} \PY{o}{=} \PY{k+kt}{Int64}\PY{p}{[}\PY{p}{]}
+            \PY{p}{)}
+        
+            \PY{n}{empty\PYZus{}station\PYZus{}duration} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{k+kt}{Float64}\PY{p}{,} \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{)}
+        
+            \PY{k}{while} \PY{n}{col}\PY{o}{.}\PY{n}{current\PYZus{}time} \PY{o}{\PYZlt{}} \PY{n}{max\PYZus{}time}
+        
+                \PY{c}{\PYZsh{} Find the next transition}
+                \PY{n}{next\PYZus{}transition}\PY{p}{,} \PY{n}{time\PYZus{}to\PYZus{}next\PYZus{}transition} \PY{o}{=} \PY{n}{simulate\PYZus{}next\PYZus{}transition}\PY{p}{(}\PY{n}{col}\PY{p}{)}
+        
+                \PY{c}{\PYZsh{} If any station is empty, record the time it spent that way}
+                \PY{n}{interval\PYZus{}duration} \PY{o}{=} \PY{n}{min}\PY{p}{(}\PY{n}{time\PYZus{}to\PYZus{}next\PYZus{}transition}\PY{p}{,} \PY{n}{max\PYZus{}time} \PY{o}{\PYZhy{}} \PY{n}{col}\PY{o}{.}\PY{n}{current\PYZus{}time}\PY{p}{)}
+                \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}
+                    \PY{k}{if} \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}
+                        \PY{n}{empty\PYZus{}station\PYZus{}duration}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+=} \PY{n}{interval\PYZus{}duration}
+                    \PY{k}{end}
+                \PY{k}{end}
+        
+                \PY{k}{if} \PY{n}{col}\PY{o}{.}\PY{n}{current\PYZus{}time} \PY{o}{+} \PY{n}{time\PYZus{}to\PYZus{}next\PYZus{}transition} \PY{o}{\PYZgt{}} \PY{n}{max\PYZus{}time}
+                    \PY{c}{\PYZsh{} The next transition will not have time to happen}
+                    \PY{k}{break}
+                \PY{k}{end}
+        
+                \PY{c}{\PYZsh{} Store the transition in the history log}
+                \PY{n}{push!}\PY{p}{(}\PY{n}{transitions\PYZus{}history}\PY{p}{,} \PY{p}{(}
+                    \PY{n}{time} \PY{o}{=} \PY{n}{col}\PY{o}{.}\PY{n}{current\PYZus{}time} \PY{o}{+} \PY{n}{time\PYZus{}to\PYZus{}next\PYZus{}transition}\PY{p}{,}
+                    \PY{n}{transition\PYZus{}type} \PY{o}{=} \PY{n}{next\PYZus{}transition}\PY{o}{.}\PY{n}{transition\PYZus{}type}\PY{p}{,}
+                    \PY{n}{i} \PY{o}{=} \PY{n}{next\PYZus{}transition}\PY{o}{.}\PY{n}{i}\PY{p}{,}
+                    \PY{n}{j} \PY{o}{=} \PY{n}{next\PYZus{}transition}\PY{o}{.}\PY{n}{j}
+                \PY{p}{)}\PY{p}{)}
+        
+                \PY{c}{\PYZsh{} Perform the transition by modifying the Colonies object}
+                \PY{n}{col}\PY{o}{.}\PY{n}{current\PYZus{}time} \PY{o}{+=} \PY{n}{time\PYZus{}to\PYZus{}next\PYZus{}transition}
+                \PY{k}{if} \PY{n}{next\PYZus{}transition}\PY{o}{.}\PY{n}{transition\PYZus{}type} \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZus{}}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{p}\PY{l+s}{\PYZdq{}}
+                    \PY{n}{transition\PYZus{}station\PYZus{}trip!}\PY{p}{(}\PY{n}{col}\PY{p}{,} \PY{n}{next\PYZus{}transition}\PY{o}{.}\PY{n}{i}\PY{p}{,} \PY{n}{next\PYZus{}transition}\PY{o}{.}\PY{n}{j}\PY{p}{)}
+                \PY{k}{elseif} \PY{n}{next\PYZus{}transition}\PY{o}{.}\PY{n}{transition\PYZus{}type} \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{p}\PY{l+s}{\PYZus{}}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}
+                    \PY{n}{transition\PYZus{}trip\PYZus{}station!}\PY{p}{(}\PY{n}{col}\PY{p}{,} \PY{n}{next\PYZus{}transition}\PY{o}{.}\PY{n}{i}\PY{p}{,} \PY{n}{next\PYZus{}transition}\PY{o}{.}\PY{n}{j}\PY{p}{)}
+                \PY{k}{end}
+        
+            \PY{k}{end}
+        
+            \PY{n}{empty\PYZus{}station\PYZus{}duration} \PY{o}{./=} \PY{n}{max\PYZus{}time}
+        
+            \PY{k}{return} \PY{n}{col}\PY{p}{,} \PY{n}{transitions\PYZus{}history}\PY{p}{,} \PY{n}{empty\PYZus{}station\PYZus{}duration}
+        \PY{k}{end}
+        
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{F}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{:}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{\PYZhy{}}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{e}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{\PYZhy{}}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{t}\PY{l+s}{y}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{j}\PY{l+s}{e}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{.}
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{function} \PY{n}{estimate\PYZus{}emptiness}\PY{p}{(}
+                \PY{n}{col}\PY{o}{::}\PY{n}{Colonies}\PY{p}{,}
+                \PY{n}{max\PYZus{}time}\PY{o}{::}\PY{k+kt}{Float64}\PY{p}{,}
+                \PY{n}{nb\PYZus{}simulations}\PY{o}{::}\PY{k+kt}{Int64}\PY{p}{,}
+                \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,}
+                \PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}}
+            \PY{p}{)}
+        
+            \PY{n}{empty\PYZus{}ends} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{nb\PYZus{}simulations}\PY{p}{,} \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{)}
+            \PY{n}{empty\PYZus{}durations} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{nb\PYZus{}simulations}\PY{p}{,} \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{)}
+        
+            \PY{n+nd}{@showprogress} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{j}\PY{l+s}{e}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{\PYZdq{}} \PY{k}{for} \PY{n}{sim} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nb\PYZus{}simulations}
+        
+                \PY{n}{new\PYZus{}col}\PY{p}{,} \PY{n}{transitions\PYZus{}history}\PY{p}{,} \PY{n}{empty\PYZus{}station\PYZus{}duration} \PY{o}{=} \PY{n}{simulate}\PY{p}{(}
+                    \PY{n}{col}\PY{p}{,} \PY{n}{max\PYZus{}time}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{p}{)}
+        
+                \PY{n}{empty\PYZus{}ends}\PY{p}{[}\PY{n}{sim}\PY{p}{,} \PY{o}{:}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{new\PYZus{}col}\PY{o}{.}\PY{n}{nb\PYZus{}bikes\PYZus{}station} \PY{o}{.==} \PY{l+m+mi}{0}\PY{p}{)}
+                \PY{n}{empty\PYZus{}durations}\PY{p}{[}\PY{n}{sim}\PY{p}{,} \PY{o}{:}\PY{p}{]} \PY{o}{=} \PY{n}{empty\PYZus{}station\PYZus{}duration}
+        
+            \PY{k}{end}
+        
+            \PY{n}{empty\PYZus{}end\PYZus{}freq} \PY{o}{=} \PY{n}{mean}\PY{p}{(}\PY{n}{empty\PYZus{}ends}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{empty\PYZus{}end\PYZus{}freq\PYZus{}uncertainty} \PY{o}{=} \PY{l+m+mf}{1.96} \PY{o}{*} \PY{p}{(}
+                \PY{n}{std}\PY{p}{(}\PY{n}{empty\PYZus{}ends}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/} \PY{n}{sqrt}\PY{p}{(}\PY{n}{nb\PYZus{}simulations}\PY{p}{)}\PY{p}{)}
+        
+            \PY{n}{empty\PYZus{}duration\PYZus{}mean} \PY{o}{=} \PY{n}{mean}\PY{p}{(}\PY{n}{empty\PYZus{}durations}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{empty\PYZus{}duration\PYZus{}mean\PYZus{}uncertainty} \PY{o}{=} \PY{l+m+mf}{1.96} \PY{o}{*} \PY{p}{(}
+                \PY{n}{std}\PY{p}{(}\PY{n}{empty\PYZus{}durations}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/} \PY{n}{sqrt}\PY{p}{(}\PY{n}{nb\PYZus{}simulations}\PY{p}{)}\PY{p}{)}
+        
+            \PY{n}{emptiness} \PY{o}{=} \PY{n}{DataFrame}\PY{p}{(}
+                \PY{n}{empty\PYZus{}end\PYZus{}freq}\PY{o}{=}\PY{n}{empty\PYZus{}end\PYZus{}freq}\PY{p}{[}\PY{o}{:}\PY{p}{]}\PY{p}{,}
+                \PY{n}{empty\PYZus{}end\PYZus{}freq\PYZus{}uncertainty}\PY{o}{=}\PY{n}{empty\PYZus{}end\PYZus{}freq\PYZus{}uncertainty}\PY{p}{[}\PY{o}{:}\PY{p}{]}\PY{p}{,}
+                \PY{n}{empty\PYZus{}duration\PYZus{}mean}\PY{o}{=}\PY{n}{empty\PYZus{}duration\PYZus{}mean}\PY{p}{[}\PY{o}{:}\PY{p}{]}\PY{p}{,}
+                \PY{n}{empty\PYZus{}duration\PYZus{}mean\PYZus{}uncertainty}\PY{o}{=}\PY{n}{empty\PYZus{}duration\PYZus{}mean\PYZus{}uncertainty}\PY{p}{[}\PY{o}{:}\PY{p}{]}\PY{p}{,}
+            \PY{p}{)}
+        
+            \PY{k}{return} \PY{n}{emptiness}
+        \PY{k}{end}
+        
+        \PY{c}{\PYZsh{} Initial repartition of one bike, put arbitrarily in the first station}
+        \PY{n}{monobike\PYZus{}nb\PYZus{}bikes\PYZus{}station} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{monobike\PYZus{}nb\PYZus{}bikes\PYZus{}station}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+        \PY{n}{monobike\PYZus{}nb\PYZus{}bikes\PYZus{}trip} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{k+kt}{Int64}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+        
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{F}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{:}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{\PYZhy{}}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{e}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{\PYZhy{}}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{t}\PY{l+s}{y}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{j}\PY{l+s}{e}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{.}
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{function} \PY{n}{estimate\PYZus{}emptiness\PYZus{}monobike}\PY{p}{(}
+                \PY{n}{col}\PY{o}{::}\PY{n}{Colonies}\PY{p}{,}
+                \PY{n}{max\PYZus{}time}\PY{o}{::}\PY{k+kt}{Float64}\PY{p}{,}
+                \PY{n}{nb\PYZus{}simulations}\PY{o}{::}\PY{k+kt}{Int64}\PY{p}{,}
+            \PY{p}{)}
+            \PY{k}{return} \PY{n}{estimate\PYZus{}emptiness}\PY{p}{(}
+                \PY{n}{col}\PY{p}{,}
+                \PY{n}{max\PYZus{}time}\PY{p}{,}
+                \PY{n}{nb\PYZus{}simulations}\PY{p}{,}
+                \PY{n}{monobike\PYZus{}nb\PYZus{}bikes\PYZus{}station}\PY{p}{,}
+                \PY{n}{monobike\PYZus{}nb\PYZus{}bikes\PYZus{}trip}
+            \PY{p}{)}
+        \PY{k}{end}\PY{p}{;}
+\end{Verbatim}
+
+
+    \textbf{Stationary distribution computations}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{S}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{f}\PY{l+s}{f}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{\PYZus{}}\PY{l+s}{i}\PY{l+s}{ }\PY{l+s}{w}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{y}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{.}
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{function} \PY{n}{compute\PYZus{}alpha\PYZus{}station}\PY{p}{(}\PY{n}{col}\PY{o}{::}\PY{n}{Colonies}\PY{p}{)}
+            \PY{n}{M} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{,} \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{)}
+            \PY{n}{M}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{:}\PY{p}{]} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{,} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}
+                \PY{k}{if} \PY{n}{i} \PY{o}{!=} \PY{n}{j}
+                    \PY{n}{M}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{+=} \PY{n}{col}\PY{o}{.}\PY{n}{lambda\PYZus{}station\PYZus{}trip}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}
+                    \PY{n}{M}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{n}{col}\PY{o}{.}\PY{n}{lambda\PYZus{}station\PYZus{}trip}\PY{p}{[}\PY{n}{j}\PY{p}{,} \PY{n}{i}\PY{p}{]}
+                \PY{k}{end}
+            \PY{k}{end}
+        
+            \PY{n}{b} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{)}
+            \PY{n}{b}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+        
+            \PY{n}{alpha\PYZus{}station} \PY{o}{=} \PY{n}{M} \PY{o}{\PYZbs{}} \PY{n}{b}
+            \PY{k}{return} \PY{n}{alpha\PYZus{}station}
+        \PY{k}{end}
+        
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{S}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{f}\PY{l+s}{f}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{\PYZus{}}\PY{l+s}{t}\PY{l+s}{\PYZus{}}\PY{l+s}{i}\PY{l+s}{j}\PY{l+s}{ }\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{\PYZus{}}\PY{l+s}{i}\PY{l+s}{.}
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{function} \PY{n}{compute\PYZus{}alpha\PYZus{}trip}\PY{p}{(}\PY{n}{col}\PY{o}{::}\PY{n}{Colonies}\PY{p}{,} \PY{n}{alpha\PYZus{}station}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{)}
+            \PY{n}{alpha\PYZus{}trip} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{k+kt}{Float64}\PY{p}{,} \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{,} \PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}\PY{p}{,} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{col}\PY{o}{.}\PY{n}{nb\PYZus{}stations}
+                \PY{k}{if} \PY{n}{i} \PY{o}{==} \PY{n}{j}
+                    \PY{n}{alpha\PYZus{}trip}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{k}{else}
+                    \PY{n}{alpha\PYZus{}trip}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{alpha\PYZus{}station}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{*} \PY{p}{(}
+                        \PY{n}{col}\PY{o}{.}\PY{n}{lambda\PYZus{}station\PYZus{}trip}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{/} \PY{n}{col}\PY{o}{.}\PY{n}{lambda\PYZus{}trip\PYZus{}station}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{]}
+                    \PY{p}{)}
+                \PY{k}{end}
+            \PY{k}{end}
+            \PY{k}{return} \PY{n}{alpha\PYZus{}trip}
+        \PY{k}{end}
+        
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{S}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{f}\PY{l+s}{f}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{.}
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{function} \PY{n}{compute\PYZus{}alpha}\PY{p}{(}\PY{n}{col}\PY{o}{::}\PY{n}{Colonies}\PY{p}{)}
+            \PY{n}{alpha\PYZus{}station} \PY{o}{=} \PY{n}{compute\PYZus{}alpha\PYZus{}station}\PY{p}{(}\PY{n}{col}\PY{p}{)}
+            \PY{n}{alpha\PYZus{}trip} \PY{o}{=} \PY{n}{compute\PYZus{}alpha\PYZus{}trip}\PY{p}{(}\PY{n}{col}\PY{p}{,} \PY{n}{alpha\PYZus{}station}\PY{p}{)}
+            \PY{k}{return} \PY{n}{alpha\PYZus{}station}\PY{p}{,} \PY{n}{alpha\PYZus{}trip}
+        \PY{k}{end}
+        
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{C}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{w}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{.}
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{function} \PY{n}{emptiness\PYZus{}proba\PYZus{}monobike}\PY{p}{(}
+            \PY{n}{alpha\PYZus{}station}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{n}{alpha\PYZus{}bike}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{\PYZcb{}}
+        \PY{p}{)}
+            \PY{n}{G\PYZus{}1} \PY{o}{=} \PY{n}{sum}\PY{p}{(}\PY{n}{alpha\PYZus{}station}\PY{p}{)} \PY{o}{+} \PY{n}{sum}\PY{p}{(}\PY{n}{alpha\PYZus{}trip}\PY{p}{)}
+            \PY{n}{emptiness\PYZus{}probability} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{.\PYZhy{}} \PY{n}{alpha\PYZus{}station} \PY{o}{/} \PY{n}{G\PYZus{}1}
+            \PY{k}{return} \PY{n}{emptiness\PYZus{}probability}
+        \PY{k}{end}\PY{p}{;}
+\end{Verbatim}
+
+
+    \subsection{3. Calibration}\label{calibration}
+
+    The numerical parameters are computed in and imported from the
+\(\texttt{data.jl}\) file.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{lambda\PYZus{}station\PYZus{}trip}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} 5×5 Array\{Float64,2\}:
+         0.0         0.0102667  0.0149333  0.00933333  0.0121333
+         0.0104833   0.0        0.0209667  0.01295     0.0172667
+         0.0174167   0.0238333  0.0        0.022       0.0284167
+         0.00991667  0.0128333  0.01925    0.0         0.0163333
+         0.0138      0.0184     0.0268333  0.0176333   0.0      
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{lambda\PYZus{}trip\PYZus{}station}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} 5×5 Array\{Float64,2\}:
+         1.0842e-19  0.333333    0.2         0.142857    0.142857  
+         0.5         1.0842e-19  0.5         0.2         0.2       
+         0.25        0.5         1.0842e-19  0.333333    0.333333  
+         0.125       0.166667    0.25        1.0842e-19  0.5       
+         0.142857    0.142857    0.2         0.5         1.0842e-19
+\end{Verbatim}
+            
+    \subsection{4. Simulation of a
+trajectory}\label{simulation-of-a-trajectory}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{nb\PYZus{}bikes\PYZus{}station}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} 5-element Array\{Int64,1\}:
+          20
+          16
+          17
+          13
+          18
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{nb\PYZus{}bikes\PYZus{}trip}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} 5×5 Array\{Int64,2\}:
+          0  1  0  0  0
+          1  0  1  0  0
+          0  1  0  1  0
+          0  0  1  0  1
+          0  0  0  1  0
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{max\PYZus{}time} \PY{o}{=} \PY{l+m+mi}{150} \PY{o}{*} \PY{l+m+mf}{60.} \PY{c}{\PYZsh{} we count the time in minutes}
+         \PY{n}{nb\PYZus{}simulations} \PY{o}{=} \PY{l+m+mi}{1000}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 1000
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{col} \PY{o}{=} \PY{n}{Colonies}\PY{p}{(}\PY{n}{lambda\PYZus{}station\PYZus{}trip}\PY{p}{,} \PY{n}{lambda\PYZus{}trip\PYZus{}station}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{new\PYZus{}col}\PY{p}{,} \PY{n}{transitions\PYZus{}history}\PY{p}{,} \PY{n}{empty\PYZus{}station\PYZus{}duration} \PY{o}{=} \PY{n}{simulate}\PY{p}{(}
+             \PY{n}{col}\PY{p}{,} \PY{n}{max\PYZus{}time}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}trip}
+         \PY{p}{)}
+         \PY{n}{head}\PY{p}{(}\PY{n}{transitions\PYZus{}history}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+┌ Warning: `head(df::AbstractDataFrame)` is deprecated, use `first(df, 6)` instead.
+│   caller = top-level scope at In[14]:4
+└ @ Core In[14]:4
+
+    \end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}14}]:}
+    
+    \begin{tabular}{r|cccc}
+	& time & transition\_type & i & j\\
+	\hline
+	1 & 0.433587 & trip\_station & 4 & 3 \\
+	2 & 0.8457 & trip\_station & 5 & 4 \\
+	3 & 0.881857 & trip\_station & 3 & 2 \\
+	4 & 1.10485 & trip\_station & 3 & 4 \\
+	5 & 1.79372 & trip\_station & 2 & 1 \\
+	6 & 3.06025 & trip\_station & 1 & 2 \\
+\end{tabular}
+
+
+    
+
+    We displayed the history of transitions for one simulated trajectory
+
+    \subsection{5, 6, 8. Probability of emptiness and confidence
+intervals}\label{probability-of-emptiness-and-confidence-intervals}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{estimate\PYZus{}emptiness}\PY{p}{(}\PY{n}{col}\PY{p}{,} \PY{n}{max\PYZus{}time}\PY{p}{,} \PY{n}{nb\PYZus{}simulations}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green}{Simulating trajectories 100\%|███████████████████████████| Time: 0:00:21}
+
+    \end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}15}]:}
+    
+    \begin{tabular}{r|cccc}
+	& empty\_end\_freq & empty\_end\_freq\_uncertainty & empty\_duration\_mean & empty\_duration\_mean\_uncertainty\\
+	\hline
+	1 & 0.009 & 0.00585641 & 0.00784925 & 0.00118344 \\
+	2 & 0.032 & 0.0109141 & 0.0226715 & 0.00198819 \\
+	3 & 0.151 & 0.0222032 & 0.122304 & 0.00285211 \\
+	4 & 0.043 & 0.0125795 & 0.0286295 & 0.0022124 \\
+	5 & 0.098 & 0.018437 & 0.0780364 & 0.00272854 \\
+\end{tabular}
+
+
+    
+
+    Here we displayed, in order of columns: - The frequency of emptiness at
+the end time (150h) for every station - The uncertainty on that value -
+The mean duration each station spends empty - The uncertainty on that
+value
+
+For instance, the probability for station 3 of finishing the simulation
+with no bike is estimated at \(0.151 \pm 0.022\), while its expected
+empty duration is estimated at \((0.122 \pm 0.003) \times 150h\).
+
+    \subsection{7. Influence of initial
+conditions}\label{influence-of-initial-conditions}
+
+    We first simulated our model with the initial conditions provided in the
+data.
+
+For this setting, we obtained the following percentage of time when each
+station is empty:
+
+\[\begin{bmatrix}
+station & mean~emptiness~duration ~ (\%)\\
+1 &0.78±0.12\\
+2 &2.27±0.20\\
+3 &12.23±0.29\\
+4 &2.86±0.22\\
+5 &7.80±0.27\\
+\end{bmatrix}\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{random\PYZus{}nb\PYZus{}bikes\PYZus{}station}\PY{p}{,} \PY{n}{random\PYZus{}nb\PYZus{}bikes\PYZus{}trip} \PY{o}{=} \PY{n}{define\PYZus{}random\PYZus{}initial\PYZus{}conditions}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{random\PYZus{}nb\PYZus{}bikes\PYZus{}station}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} 5-element Array\{Int64,1\}:
+           4
+           9
+           0
+          18
+          39
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{random\PYZus{}nb\PYZus{}bikes\PYZus{}trip}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} 5×5 Array\{Int64,2\}:
+          0  1  1  1  2
+          0  0  2  2  0
+          0  0  0  1  1
+          2  1  1  0  2
+          2  1  0  2  0
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{estimate\PYZus{}emptiness}\PY{p}{(}\PY{n}{col}\PY{p}{,} \PY{n}{max\PYZus{}time}\PY{p}{,} \PY{n}{nb\PYZus{}simulations}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}station}\PY{p}{,} \PY{n}{nb\PYZus{}bikes\PYZus{}trip}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green}{Simulating trajectories 100\%|███████████████████████████| Time: 0:00:17}
+
+    \end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}19}]:}
+    
+    \begin{tabular}{r|cccc}
+	& empty\_end\_freq & empty\_end\_freq\_uncertainty & empty\_duration\_mean & empty\_duration\_mean\_uncertainty\\
+	\hline
+	1 & 0.006 & 0.00478897 & 0.00824964 & 0.00120917 \\
+	2 & 0.044 & 0.0127183 & 0.0244554 & 0.00201993 \\
+	3 & 0.14 & 0.0215172 & 0.125485 & 0.00278177 \\
+	4 & 0.034 & 0.0112383 & 0.0266072 & 0.00213945 \\
+	5 & 0.112 & 0.0195564 & 0.079548 & 0.00295704 \\
+\end{tabular}
+
+
+    
+
+    We then tried randomly-defined intial conditions (printed above).
+
+For this new setting, we obtained the following percentage of time when
+each station is empty:
+
+\[\begin{bmatrix}
+station & mean~emptiness~duration ~ (\%)\\
+1 & 0.82 ± 0.12\\
+2 & 2.45 ± 0.20\\
+3 & 12.54 ± 0.28\\
+4 & 2.66 ± 0.21\\
+5 & 7.95 ± 0.30\\
+\end{bmatrix}\]
+
+    The initial conditions will always have an influence on the result,
+because unless the starting point is already the stationary distribution
+the process will never reach it exactly. However we can suspect this
+influence is negligible, since the confidence intervals on the estimated
+probabilities overlap.
+
+    \subsection{9. Stationary state
+approximation}\label{stationary-state-approximation}
+
+If we consider that after 150 hours, the chain has already mixed more
+than enough, then the result of the question 8 may be better to
+approximate the stationary probability than the result of question 5.
+
+Indeed, the percentage of time when the station is empty (Q8) may
+include lots of observations of the (near-)stationary probability (eg.
+the last 100 hours out of 150), and so the mean emptiness duration can
+exploit a large part of the trajectory. On the other hand, the end time
+emptiness frequency only considers one observation per trajectory.
+
+Another way to answer is to note that the confidence intervals are much
+tighter with the "empty duration" method than with the "emptiness
+frequency".
+
+    \subsection{10. Better precision}\label{better-precision}
+
+    In line with the previous question, it would be better to perform more
+simulations to increase the precision, because 150h seems to be a
+well-chosen duration to ensure near-stationarity.
+
+    \subsection{11. Traffic equations}\label{traffic-equations}
+
+    The traffic equations in this closed migration process are given by:
+
+\begin{align}
+\forall i, \quad & \alpha_i \sum_{j \neq i}{\lambda_{i t_{ij}}} = \sum_{j \neq i}{\alpha_{t_{ji}} \lambda_{t_{ji} i}} \\
+\forall i \neq j, \quad & \alpha_{t_{ij}} \lambda_{t_{ij} j} = \alpha_i \lambda_{i t_{ij}}
+\end{align}
+
+Combining both equations, we find that the \(\alpha_i\) are the solution
+of a linear system given by
+
+\[\forall i, \quad \alpha_i \left(\sum_{j \neq i}{\lambda_{i t_{ij}}}\right) - \sum_{j \neq i}{ \alpha_j \lambda_{j t_{ji}}} = 0\]
+
+Replacing the first of those constraints (which is redundent) by
+\[\sum_{i}{\alpha_i} = 1\] allows us to solve the system without getting
+the trivial solution \(\forall i, \alpha_i = 0\).
+
+The \(\alpha_{t_{ij}}\) are then obtained from the \(\alpha_i\) with the
+second traffic equation. This two-step method is useful because we only
+have to solve a system in \(N_s\) variables, and not \(N_s^2\).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{alpha\PYZus{}station}\PY{p}{,} \PY{n}{alpha\PYZus{}trip} \PY{o}{=} \PY{n}{compute\PYZus{}alpha}\PY{p}{(}\PY{n}{col}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{alpha\PYZus{}station}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} 5-element Array\{Float64,1\}:
+          0.21452558088665818
+          0.2059815546761553 
+          0.1814915242044868 
+          0.20641426572971042
+          0.19158707450298923
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{alpha\PYZus{}trip}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} 5×5 Array\{Float64,2\}:
+          0.0         0.00660739  0.0160179   0.0140157   0.0182204 
+          0.00431875  0.0         0.00863749  0.0133373   0.0177831 
+          0.0126439   0.0086511   0.0         0.0119784   0.0154722 
+          0.0163755   0.0158939   0.0158939   0.0         0.00674287
+          0.0185073   0.0246764   0.0257046   0.00675664  0.0       
+\end{Verbatim}
+            
+    \subsection{12. One-bike state space}\label{one-bike-state-space}
+
+    In the one-bike case, the state space is
+\[E = \left\{ \mathbf{n} = \left( (n_i)_{i}, (n_{t_{ij}})_{(i, j), i \neq j} \right) \quad | \quad \sum_{i}{n_i} + \sum_{(i, j), i \neq j}{n_{t_{ij}}} = 1 \right\}\]
+In other words, there is one state per station and one per trip.
+
+    \subsection{13. One-bike emptiness
+probabilities}\label{one-bike-emptiness-probabilities}
+
+    The normalization factor of the stationary distribution is given by
+\[G_1 = \sum_{i}{\alpha_i} + \sum_{i \neq j}{\alpha_{t_{ij}}}\] And the
+probability of a station being empty is simply:
+\[\mathbb{P}(n_i = 0) = 1 - \frac{\alpha_i}{G_1}\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{emptiness\PYZus{}proba\PYZus{}monobike}\PY{p}{(}\PY{n}{alpha\PYZus{}station}\PY{p}{,} \PY{n}{alpha\PYZus{}trip}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} 5-element Array\{Float64,1\}:
+          0.8321704317214969
+          0.8388546706096625
+          0.8580139299585932
+          0.8385161482338817
+          0.8501158888898838
+\end{Verbatim}
+            
+    All stations have more or less the same stationary probability of being
+empty, between \(83\%\) and \(85\%\).
+
+    \subsection{14. Comparison with one-bike
+simulations}\label{comparison-with-one-bike-simulations}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{estimate\PYZus{}emptiness\PYZus{}monobike}\PY{p}{(}\PY{n}{col}\PY{p}{,} \PY{n}{max\PYZus{}time}\PY{p}{,} \PY{n}{nb\PYZus{}simulations}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green}{Simulating trajectories 100\%|███████████████████████████| Time: 0:00:03}
+
+    \end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}24}]:}
+    
+    \begin{tabular}{r|cccc}
+	& empty\_end\_freq & empty\_end\_freq\_uncertainty & empty\_duration\_mean & empty\_duration\_mean\_uncertainty\\
+	\hline
+	1 & 0.849 & 0.0222032 & 0.830747 & 0.00137401 \\
+	2 & 0.842 & 0.0226182 & 0.838869 & 0.00123474 \\
+	3 & 0.849 & 0.0222032 & 0.858803 & 0.00092348 \\
+	4 & 0.839 & 0.0227912 & 0.838149 & 0.00126756 \\
+	5 & 0.838 & 0.0228482 & 0.850638 & 0.00108675 \\
+\end{tabular}
+
+
+    
+
+    Fortunately, the theoretical values computed above mostly fall within
+the confidence intervals of the simulation.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
